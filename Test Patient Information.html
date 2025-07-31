@@ -1,0 +1,981 @@
+<style>
+  body{
+    font-family: 'Calibri';
+  }
+  /* Form container */
+  .form-container {
+      font-size: 16px;
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 1.5rem;
+      padding-right: 0;
+      background-color: #ffffff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+      margin-top: 20px;
+      font-family: 'Calibri';
+  }
+  /*page on mobile app*/
+  .page{
+      display: block;
+  }
+  /* Form input fields */
+  .slds-form-element {
+      font-family: 'Calibri';
+      margin-bottom: 15px;
+      margin-right: 1.5rem;
+  }
+  .slds-form-element label { 
+      font-weight: normal;
+  }
+  .slds-form-element input,
+  .slds-form-element select,
+  .slds-form-element textarea {
+      width: 100%;
+      padding: 8px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+  }
+  .slds-form-element input{
+      color: #000000;
+  }
+  
+  .side-by-side {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: last baseline;
+  }
+  .side-by-side .slds-form-element {
+      flex: 1 1 25%; /* Adjust width as needed */
+      /* Adjust spacing between fields */
+      margin-bottom: 1rem; /* Adjust vertical spacing */
+  }
+  .side-by-side .slds-form-element label {
+      width: 100%;
+  }
+  .side-by-side .slds-form-element input,
+  .side-by-side .slds-form-element select {
+      width: 100%;
+  }
+  .q-header{
+    font-weight: normal;
+  }
+  /* Submit button */
+  .submit-button {
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    background-color: rgb(52, 198, 244);
+    color: #ffffff;
+    border: none;
+    border-radius: 30px 30px 30px 30px;
+    cursor: pointer;
+    margin: auto;
+    width: 130px;
+    height: 50px;
+  }
+
+  .submit-button:hover {
+      background-color: #005fb2;
+  }
+  #submit_button:disabled {
+    background-color: #cccccc; /* Same gray background */
+    color: #666666; /* Same dark gray text color */
+    cursor: not-allowed; /* Ensure cursor style remains */
+  }
+  .plain-button{
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    background-color: rgb(52, 198, 244);
+    color: #ffffff;
+    border: none;
+    border-radius: 30px 30px 30px 30px;
+    cursor: pointer;
+    margin: auto;
+    height: 50px;
+  }
+  .subheader{
+    font-size: x-large;
+    text-align: center;
+    padding: 2vh;
+  }
+  .centered-checkbox{
+    display: flex;
+    margin: 20px;
+    line-height: 1.5;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Calibri'
+  }
+  .centered-checkbox label{
+      font-weight: normal;
+      font-size: 20px;
+  }
+  .centered-checkbox input{
+      width: 1.1rem;
+      height:1.1rem;
+      margin-right: 3px;
+  }
+  .required{
+    color: red;
+    margin: 3px;
+  }
+  .return-message{
+    display:flex; 
+    justify-content:center; 
+    height:50vh; 
+    align-items:center;
+  }
+  /*adjust position of pain location responses*/
+  .pain-locations{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 5px;
+}
+  .multiselect-checkbox{
+    font-family: 'Calibri';
+    display: flex;
+    line-height: 1.5;
+    align-items: center;   
+  }
+  .multiselect-checkbox label{
+      font-weight: normal;
+
+  }
+  .multiselect-checkbox input{
+      width: 1.1rem;
+      height:1.1rem;
+      margin-right: 3px;
+  }
+  #already-submitted{
+    display: none;
+    
+  }
+  #no-baseline{
+    display: none;
+  }
+
+  @media(max-width: 600px){
+    .form-container{
+      margin: 0px;
+      padding: 0px;
+      box-shadow: none;
+      border-radius: 0%;
+      background-color: white;
+    }
+    .page{
+
+      height:fit-content;
+      display: none;
+      background-color: white;
+    }
+    /*stack on mobile*/
+    .side-or-bottom{
+      display:block;
+    }
+
+    .return-message{
+      height:30rem;
+    }
+    .next-button {
+      width: 130px;
+      height: 50px;
+      padding: 8px 16px;
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      background-color: rgb(52, 198, 244);
+      color: #ffffff;
+      border: none;
+      border-radius: 30px 30px 30px 30px;
+      cursor: pointer;  
+      display: inline-block;  
+      margin: auto; 
+      justify-self: right;
+    }
+    .previous-button {
+        width: 130px;
+        height: 50px;
+        padding: 8px 16px;
+        font-size: 20px;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none;
+        background-color: lightgray;
+        color: black;
+        border: none;
+        border-radius: 30px 30px 30px 30px;
+        cursor: pointer;
+        margin: auto;
+        justify-self: left;
+    }
+    .buttons{
+        display: flex;
+        width: 100%;
+        position:fixed;
+        bottom: 0px;
+        left: 0px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        background-color: white;       
+    }
+    .mobile-progress-bar{
+      display: block;
+      text-align: center;
+      width: 100%;
+      margin: auto;
+      height: 10px;
+      border-radius: 5px;
+    }
+    progress::-webkit-progress-bar {
+      background-color: #BBBDBF;               
+      border-radius: 5px;                
+    }                               
+    progress::-webkit-progress-value {            
+        background-color: #34C6F4;           
+        border-radius: 5px;            
+    }               
+    .welcome-message{
+      display: none;
+    }
+    /*adjust position of pain location responses on mobile*/
+    .pain-locations{
+      display: flex;
+      width: 100%;
+      margin-right: 1rem;
+    }
+    .multiselect-checkbox{
+      min-width: 10rem;
+      align-items: first baseline;
+      line-height: 1.5rem;
+      margin-bottom: .5rem;
+    }
+    .multiselect-checkbox label{
+        align-self: center;
+    }
+    .multiselect-checkbox input{
+        height: 1.5rem;
+        width: 1.5rem;
+        border-radius: 3px;
+    }
+    #P1{
+      display: block;
+    }
+    #nav_to_consent{
+      display: none;
+    }
+  }
+  @media(min-width: 600px){
+    #P1{
+      display: block;
+    }
+    .buttons{
+      margin-top: 15px;
+      text-align: right;
+      margin-right: 2rem;
+    }
+    .next-button{
+      display: none;
+    }
+    .previous-button{
+      display: none;
+    }
+    .submit-button{
+      display: none;
+    }
+    #nav_to_consent:disabled {
+      background-color: #cccccc; /* Same gray background */
+      color: #666666; /* Same dark gray text color */
+      cursor: not-allowed; /* Ensure cursor style remains */
+  }
+    .mobile-progress-bar{
+      display: none;
+    }
+    .welcome-message{
+      display: block;
+      margin: auto;
+      margin-bottom: 50px;
+    }
+    .header{
+      font-size: xx-large;
+      font-weight: bold;
+      text-align: center;
+    }
+    .multiselect-checkbox{
+      min-width: 8.5rem;
+    }
+    .side-or-bottom{
+      display: flex; 
+      align-items: last baseline;
+    }
+    #garment_sizing .slds-form-element{
+      flex: 1 1 33%;
+    }
+    #garment_sizing .side-by-side{
+      flex: 1 1 67%;
+    }   
+    #nav_to_consent{
+        width: 130px;
+        height: 50px;
+        padding: 8px 16px;
+        font-size: 20px;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none;
+        background-color: rgb(52, 198, 244);
+        color: #ffffff;
+        border: none;
+        border-radius: 30px 30px 30px 30px;
+        cursor: pointer;  
+        display: inline-block;  
+        margin: auto; 
+        justify-self: right;           
+    }
+    #consent_page{
+      display: none;
+    }
+
+  }
+</style>
+<div id="already-submitted" class="return-message">
+  <div style="display:block">
+    <p>Thanks for checking back in with us. It looks like we have your patient information, so you can close this window.</p>
+    <p>If you have questions, please contact customer service at 800-935-7763 or <a alias="customerservice@rsmedical.com" conversion="true" data-linkto="mailto:" href="mailto:customerservice@rsmedical.com" style="color:#0086bf;text-decoration:none;" title="customerservice@rsmedical.com">customerservice@rsmedical.com</a> between 7am – 5pm Mon-Fri.</p>
+  </div>
+</div>
+<div class="form-container" id="form_container">
+
+  <form id="patient_demographics_form"action="https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DWA000003gHNh" method="POST">
+    <!--00DWA000003gHNh-->
+      <input type=hidden name="oid" value="00DWA000003gHNh"/>
+      <input type=hidden name="retURL" id="retURL" value="https://www.rsmedical.com/test-completed"/>
+  <input type="hidden" name="company" value="Patient Demographics"/>
+  <input type="hidden" name="recordType" id="recordType" value="012Vb000002LtA3"/>
+  <input type="hidden" title="contactType" name="00N4100000Scur9" id="00N4100000Scur9" value="Patient"/>
+  <input type="hidden" name="lead_source" id="lead_source" value="Website Form"/>
+  <input type=hidden id="00NVb000001aYpM" maxlength="11" name="00NVb000001aYpM" size="20" type="text" /><!--key-->
+
+  <input type="hidden"  id="country_code" name="country_code" value="US"/> 
+  <!-- Patient Demographic Info -->
+  <progress id="mobile-progress" class="mobile-progress-bar" value="0" max="100"></progress>
+  <div class="welcome-message" id="welcome_header">
+    <div class="header">
+      <p>Patient Account Set Up</p>
+    </div>
+    <div class="subheader">
+        <p>To make sure we’re ready to ship when we receive your prescriber’s order, we need some information.</p>
+    </div>
+  </div>
+  <div class="page" id="P1">
+    <div class="side-by-side">
+      <div class="slds-form-element">
+        <label for="first_name">First Name<span class="required">*</span></label>
+        <input id="first_name" maxlength="40" name="first_name" size="20" type="text" required/>
+      </div>
+      <div class="slds-form-element">
+        <label for="last_name">Last Name<span class="required">*</span></label>
+        <input id="last_name" maxlength="80" name="last_name" size="20" type="text" required/>
+      </div>
+    </div>
+    <div class="side-by-side">
+      <div class="slds-form-element">
+        <label for="birthday">Date of Birth<span class="required">*</span></label><span class="dateInput dateOnlyInput">
+          <input type="date" id="birthday" name="birthday" size="12" required/>
+        </span>
+      </div>
+      <div class="slds-form-element">
+        <label for="SSN">Last 4 Digits of Social Security Number<span class="required">*</span></label>
+        <input id="00NVb000001uQyl" name="00NVb000001uQyl" maxlength="4" type="text" required/>
+      </div>
+    </div>
+
+    <div class="side-by-side"><div class="slds-form-element">
+      <label for="street">Street Address<span class="required">*</span></label>
+      <input id="street" name="street" required></input>
+  </div>
+  <div class="slds-form-element">
+      <label for="city">City<span class="required">*</span></label>
+      <input id="city" maxlength="40" name="city" size="20" type="text" required/><br>
+  </div></div>
+    
+    <div class="side-by-side">
+      <div class="slds-form-element">
+          <label for="state_code">State/Province<span class="required">*</span></label>
+          <select id="state_code" name="state_code" required>
+            <option value="">--None--</option>
+            <option value="AL">Alabama</option>
+            <option value="AK">Alaska</option>
+            <option value="AS">American Samoa</option>
+            <option value="AZ">Arizona</option>
+            <option value="AR">Arkansas</option>
+            <option value="AA">Armed Forces Americas</option>
+            <option value="AE">Armed Forces Europe</option>
+            <option value="AP">Armed Forces Pacific</option>
+            <option value="CA">California</option>
+            <option value="CO">Colorado</option>
+            <option value="CT">Connecticut</option>
+            <option value="DE">Delaware</option>
+            <option value="DC">District of Columbia</option>
+            <option value="FL">Florida</option>
+            <option value="GA">Georgia</option>
+            <option value="GU">Guam</option>
+            <option value="HI">Hawaii</option>
+            <option value="ID">Idaho</option>
+            <option value="IL">Illinois</option>
+            <option value="IN">Indiana</option>
+            <option value="IA">Iowa</option>
+            <option value="KS">Kansas</option>
+            <option value="KY">Kentucky</option>
+            <option value="LA">Louisiana</option>
+            <option value="ME">Maine</option>
+            <option value="MD">Maryland</option>
+            <option value="MA">Massachusetts</option>
+            <option value="MI">Michigan</option>
+            <option value="MN">Minnesota</option>
+            <option value="MS">Mississippi</option>
+            <option value="MO">Missouri</option>
+            <option value="MT">Montana</option>
+            <option value="NE">Nebraska</option>
+            <option value="NV">Nevada</option>
+            <option value="NH">New Hampshire</option>
+            <option value="NJ">New Jersey</option>
+            <option value="NM">New Mexico</option>
+            <option value="NY">New York</option>
+            <option value="NC">North Carolina</option>
+            <option value="ND">North Dakota</option>
+            <option value="MP">Northern Mariana Islands</option>
+            <option value="OH">Ohio</option>
+            <option value="OK">Oklahoma</option>
+            <option value="OR">Oregon</option>
+            <option value="PA">Pennsylvania</option>
+            <option value="PR">Puerto Rico</option>
+            <option value="RI">Rhode Island</option>
+            <option value="SC">South Carolina</option>
+            <option value="SD">South Dakota</option>
+            <option value="TN">Tennessee</option>
+            <option value="TX">Texas</option>
+            <option value="UT">Utah</option>
+            <option value="VT">Vermont</option>
+            <option value="VA">Virginia</option>
+            <option value="WA">Washington</option>
+            <option value="WV">West Virginia</option>
+            <option value="WI">Wisconsin</option>
+            <option value="WY">Wyoming</option>
+          </select><br>
+      </div>
+      <div class="slds-form-element">
+          <label for="zip">Zip<span class="required">*</span></label>
+          <input id="zip" maxlength="20" name="zip" size="20" type="text" required/><br>
+      </div>
+    </div>
+    
+  </div>
+  <div class="page" id="P2">
+    <div class="slds-form-element">
+      <label for="email">Email Address<span class="required">*</span></label>
+      <input  id="email" maxlength="80" name="email" size="20" type="text" required/><br>
+    </div>  
+    <div class="side-by-side">
+      <div class="slds-form-element">
+        <label for="phone">Home Phone</label>
+        <input  id="phone" maxlength="40" name="phone" size="20" type="tel" /><br>
+      </div>   
+      <div class="slds-form-element">
+          <label for="mobile">Mobile Phone<span class="required">*</span></label>
+          <input id="mobile" maxlength="40" name="mobile" size="20" type="tel" required/><br>
+      </div>
+    </div> 
+    
+    <div class="slds-form-element">
+        <label for="00NVb000001aYpi">Preferred Communication Method<span class="required">*</span></label>
+        <select id="00NVb000001aYpi" name="00NVb000001aYpi" title="Preferred Communication Method" required>
+            <option value="">--None--</option>
+            <option value="Mobile">Mobile</option>
+            <option value="Home">Home</option>
+        </select><br>
+    </div>
+    <div class="side-by-side">
+      <div class="slds-form-element">
+        <label for="00NVb000001aYp7">Emergency Contact Name</label>
+        <input id="00NVb000001aYp7" maxlength="25" name="00NVb000001aYp7" size="20" type="text" /><br>
+      </div>
+
+      <div class="slds-form-element">
+        <label for="00NVb000001aYp8">Emergency Contact Phone</label>
+        <input id="00NVb000001aYp8" maxlength="40" name="00NVb000001aYp8" size="20" type="tel" /><br>
+      </div>
+    </div>
+    <div class="side-by-side">
+      <div class="slds-form-element">
+          <label for="00NVb000001aYpj">Prescriber Name</label>      
+          <input id="00NVb000001aYpj" maxlength="255" name="00NVb000001aYpj" size="20" type="text" /><br>
+      </div>
+      <div class="slds-form-element">
+        <label for="00NVb000001aYpQ">Medical Facility</label>
+        <input  id="00NVb000001aYpQ" maxlength="255" name="00NVb000001aYpQ" size="20" type="text" />
+      </div>
+    </div>
+    <div class="slds-form-element">
+      <label for="pain_location">Where is your primary source of pain located?<span class="required">*</span>(Check all that apply)</label>
+      <div class="pain-locations">
+          <div class="multiselect-checkbox">
+              <input type="checkbox" id="Head" name="pain_location" value="Head"/><label for="Head">Head</label>
+          </div>
+          <div class="multiselect-checkbox">
+              <input type="checkbox" id="Neck" name="pain_location" value="Neck"/><label for="Neck">Neck</label>
+          </div>
+          <div class="multiselect-checkbox">
+              <input type="checkbox" id="Upper_Back"  name="pain_location" value="Upper Back"/><label for="Upper_Back">Upper Back</label>
+          </div>
+          <div class="multiselect-checkbox">
+              <input type="checkbox" id="Shoulder"  name="pain_location" value="Shoulder"/><label for="Shoulder">Shoulder</label>
+          </div>
+          <div class="multiselect-checkbox">
+              <input type="checkbox" id="Arm"  name="pain_location" value="Arm"/><label for="Arm">Arm</label>
+          </div>
+          <div class="multiselect-checkbox">
+              <input type="checkbox" id="Elbow"  name="pain_location" value="Elbow"/><label for="Elbow">Elbow</label>
+          </div>
+          <div class="multiselect-checkbox">
+              <input type="checkbox" id="Wrist"  name="pain_location" value="Wrist"/><label for="Wrist">Wrist</label>
+          </div>
+          <div class="multiselect-checkbox">
+              <input type="checkbox" id="Hand"  name="pain_location" value="Hand"/><label for="Hand">Hand</label>
+          </div>
+          <div class="multiselect-checkbox">
+              <input type="checkbox" id="Mid-Back"  name="pain_location" value="Mid-Back"/><label for="Mid-Back">Mid-Back</label>
+          </div>
+          <div class="multiselect-checkbox">
+              <input type="checkbox" id="Lower_Back"  name="pain_location" value="Lower Back"/><label for="Lower_Back">Lower Back</label>
+          </div>
+          <div class="multiselect-checkbox">
+              <input type="checkbox" id="Hip"  name="pain_location" value="Hip"/><label for="Hip">Hip</label>
+          </div>
+          <div class="multiselect-checkbox">
+              <input type="checkbox" id="Upper_Leg"  name="pain_location" value="Upper Leg"/><label for="Upper_Leg">Upper Leg</label>
+          </div>
+          <div class="multiselect-checkbox">
+              <input type="checkbox" id="Knee"  name="pain_location" value="Knee"/><label for="Knee">Knee</label>
+          </div>
+          <div class="multiselect-checkbox">
+              <input type="checkbox" id="Lower_Leg"  name="pain_location" value="Lower Leg"/><label for="Lower_Leg">Lower Leg</label>
+          </div>
+          <div class="multiselect-checkbox">
+              <input type="checkbox" id="Ankle"  name="pain_location" value="Ankle"/><label for="Ankle">Ankle</label>
+          </div>
+          <div class="multiselect-checkbox">
+              <input type="checkbox" id="Foot"  name="pain_location" value="Foot"/><label for="Foot">Foot</label>
+          </div>
+      </div>
+    </div>
+    <div class="q-header">
+      <p>If your order includes a garment, help us ensure the best fit by sharing your height and waist size.</p>
+    </div>
+    <div class="side-or-bottom" id="garment_sizing">
+      <div class="side-by-side">
+        <div class="slds-form-element">
+          <label for="00NVb000002ytoW">Height (Feet)<span class="required">*</span></label>
+          <select  id="00NVb000002ytoW" name="00NVb000002ytoW" title="Height (Feet)" required>
+            <option value="">--None--</option>
+            <option value="3&#39;">3&#39;</option>
+            <option value="4&#39;">4&#39;</option>
+            <option value="5&#39;">5&#39;</option>
+            <option value="6&#39;">6&#39;</option>
+            <option value="7&#39;">7&#39;</option>
+          </select>
+        </div>
+        <div class="slds-form-element">
+          <label for="00NVb000002ytoX">Height (Inches)<span class="required">*</span></label>
+          <select  id="00NVb000002ytoX" name="00NVb000002ytoX" title="Height (Inches)" required>
+            <option value="">--None--</option>
+            <option value="0&quot;">0&quot;</option>
+            <option value="1&quot;">1&quot;</option>
+            <option value="2&quot;">2&quot;</option>
+            <option value="3&quot;">3&quot;</option>
+            <option value="4&quot;">4&quot;</option>
+            <option value="5&quot;">5&quot;</option>
+            <option value="6&quot;">6&quot;</option>
+            <option value="7&quot;">7&quot;</option>
+            <option value="8&quot;">8&quot;</option>
+            <option value="9&quot;">9&quot;</option>
+            <option value="10&quot;">10&quot;</option>
+            <option value="11&quot;">11&quot;</option>
+          </select>
+        </div>   
+      </div> 
+      <div class="slds-form-element"> 
+        <label for="00NVb000002ytoY">Waist Size<span class="required">*</span></label>
+        <select  id="00NVb000002ytoY" name="00NVb000002ytoY" title="Waist Size" required>
+          <option value="">--None--</option>
+          <option value="Small: 19-25 inches">Small: 19-25 inches</option>
+          <option value="Medium: 25-36 inches">Medium: 25-36 inches</option>
+          <option value="Large: 36-45 inches">Large: 36-45 inches</option>
+          <option value="X-Large: 45-55 inches">X-Large: 45-55 inches</option>
+          <option value="XX-Large: over 55 inches">XX-Large: over 55 inches</option>
+        </select>
+      </div>  
+    </div>
+    
+  </div>
+
+  
+  <div class="page" id = "consent_page">
+      <div class="header">
+        <p>E-mail, Voicemail and Text Message Consent</p>
+      </div>
+      <div class="subheader">
+        <p>We’d like to send updates as your order progresses. Giving consent allows us to message you.</p>
+      </div>
+      <div class="consent-text">
+        RS Medical will on occasion send appointment reminders and wellness messages related to your care to you via email, voicemail or text messages based on our understanding that you would like us to communicate with you via e-mail, voicemail or text messaging. These communications may come from our staff members or from our automated system. RS Medical is not responsible for any unauthorized access. RS Medical will never sell your information. Message and data rates may apply.
+        <br/>
+        <br/>
+        I consent to RS Medical e-mail, voicemail and text messages. I will inform RS Medical if I no longer wish to communicate with RS Medical via e-mail, voicemail or text message. I would like to opt-in to receiving the latest information about RS Medical products and services. I understand that I am not required to Consent to be a patient of RS Medical.
+      </div>
+      <div class="centered-checkbox">         
+        <input title="Text and Email Release" type="checkbox" id="text_release" name="text_release"/>
+        <label for="text_release">I Consent</label>
+      </div>
+  </div>
+
+  
+  <!--hidden form questions-->
+  <select hidden id="00NVb000001aYpo" name="00NVb000001aYpo" title="Text and Email Release"><option value="">--None--</option><option value="Sent">Sent</option>
+    <option value="Granted">Granted</option>
+    <option value="Granted by Guardian">Granted by Guardian</option>
+    <option value="Refused">Refused</option>
+    <option value="Revoked">Revoked</option>
+    <option value="Viewed">Viewed</option>
+    </select><br>
+  <input title="DOB" type="hidden" id="00NVb000001aYp4" name="00NVb000001aYp4" size="12"/>
+  <select hidden id="00NVb000001aYpT" multiple="multiple" name="00NVb000001aYpT" title="Pain Location"><option value="Upper Back">Upper Back</option>
+    <option value="Neck">Neck</option>
+    <option value="Shoulder">Shoulder</option>
+    <option value="Mid-Back">Mid-Back</option>
+    <option value="Lower Back">Lower Back</option>
+    <option value="Hip">Hip</option>
+    <option value="Upper Leg">Upper Leg</option>
+    <option value="Knee">Knee</option>
+    <option value="Lower Leg">Lower Leg</option>
+    <option value="Ankle">Ankle</option>
+    <option value="Foot">Foot</option>
+    <option value="Arm">Arm</option>
+    <option value="Wrist">Wrist</option>
+    <option value="Elbow">Elbow</option>
+    <option value="Hand">Hand</option>
+    <option value="Head">Head</option>
+    </select>
+  <!-- Captcha and submit button -->
+  <div class="buttons">
+    <button id="previousQ" type="button" class="previous-button">Previous</button>
+    <button id="nextQ" type="button" class="next-button">Next</button>
+    <button id="nav_to_consent" type="button">Next</button>
+    <button type="submit" class="submit-button" id="submit_button" disabled>Submit</button>
+  </div>
+
+</form>
+</div>
+<script>
+
+function handleSubmit(){
+  console.log('in handleSubmit');
+  let oldKey = document.getElementById('00NVb000001aYpM');
+  if (oldKey.value === '' || oldKey.value === null){
+    generateKey();
+  }
+  translateQuestionInput();
+  clearCookies();
+  setCookie('00NVb000001aYpM', document.getElementById('00NVb000001aYpM').value, 30);
+}
+function generateKey(){
+  console.log('generating key');
+  let patientName = document.getElementById('first_name').value.at(0) + document.getElementById('last_name').value.at(0);
+  let keyElement = document.getElementById('00NVb000001aYpM');
+
+  const NOW = new Date();
+  const HOURS = NOW.getHours().toString().padStart(2, '0'); 
+  const MINUTES = NOW.getMinutes().toString().padStart(2, '0'); 
+  const SECONDS = NOW.getSeconds().toString().padStart(2, '0'); 
+  const MILLISECONDS = NOW.getMilliseconds().toString().padStart(3, '0');
+  const TIME_STRING = HOURS + MINUTES + SECONDS + MILLISECONDS;
+
+  keyElement.value = patientName + TIME_STRING;
+}
+
+function checkRequiredFields(){
+    const FORM = document.getElementById('patient_demographics_form');
+    let button = document.getElementById('submit_button');
+    let navToConsentButton = document.getElementById('nav_to_consent');
+    let isValid = FORM.checkValidity();
+    button.disabled = !isValid;
+    navToConsentButton.disabled = !isValid; 
+}
+function translateQuestionInput(){
+    //take question input and format it into Salesforce fields (hidden questions)
+    console.log('In translateQuestionInput');
+
+    //consent question
+
+    let consent = document.getElementById('text_release');
+    let hiddenConsent = document.getElementById('00NVb000001aYpo');
+    if (consent.checked){
+      hiddenConsent.value = "Granted";
+    } else{
+      hiddenConsent.value = "Refused";
+    }
+   
+
+    //date of birth
+    let dob = document.getElementById('birthday').value;
+    let hiddenDOB = document.getElementById('00NVb000001aYp4');
+    let dobList = dob.split('-');
+    hiddenDOB.value = dobList[1] + '/' + dobList[2] + '/' + dobList[0];
+
+    //pain location question
+    let painLocQ = document.getElementById('00NVb000001aYpT');
+    let painLocAs = document.querySelectorAll('input[name="pain_location"]:checked');
+    let painLocArray = [];
+    for (var i = 0; i < painLocAs.length; i++){
+        painLocArray.push(painLocAs[i].value);
+    }
+
+    for (var i = 0; i < painLocQ.options.length; i++){
+
+        if (painLocArray.includes(painLocQ.options[i].value)){
+            painLocQ.options[i].selected = "selected";
+        }
+    }
+
+}
+function setCookie(cName, cValue, expDays){
+    let cookieConsent = checkSquarespaceCookieConsent();
+    let date = new Date();
+    date.setTime(date.getTime() + (expDays *24*60*60*1000));
+    const EXPIRES = "expires=" + date.toUTCString();
+    if(cookieConsent == 'accepted'){
+      document.cookie = cName + "=" + cValue + "; " + EXPIRES + "; path=/";
+    }
+}
+function getCookie(cName){
+    const NAME = cName + "=";
+    const C_DECODED = decodeURIComponent(document.cookie);
+    const C_ARR = C_DECODED.split("; ");
+    let value;
+    C_ARR.forEach(val => {
+        if(val.indexOf(NAME) === 0) value = val.substring(NAME.length);      
+    })
+    return value;
+}
+function setCookies(){
+    let cookieConsent = checkSquarespaceCookieConsent();
+    const FORM = document.getElementById('patient_demographics_form');
+    if (cookieConsent === 'accepted'){
+      for(var i=0; i< FORM.elements.length; i++){
+          var element = FORM.elements[i];
+          setCookie(element.id, element.value, 30); 
+      }
+    }
+}
+function getCookies(){
+    console.log('In getCookies');   
+    const FORM = document.getElementById('patient_demographics_form');   
+    for(var i=0; i< FORM.elements.length; i++){
+        let element = FORM.elements[i];
+        if (getCookie(element.id) != null){
+            document.getElementById(element.id).value = getCookie(element.id);
+        } 
+    }
+}
+function clearCookies(){
+  console.log('in clearCookies');
+  let questions = document.getElementsByClassName('slds-form-element');
+  for(var i = 0; i < questions.length; i++){
+    let element = questions[i];
+    setCookie(element.id, null, 30);
+  }
+}
+
+function getStyle(el,styleProp){
+  var x = document.getElementById(el);
+  if (x.currentStyle)
+    var y = x.currentStyle[styleProp];
+  else if (window.getComputedStyle)
+    var y = document.defaultView.getComputedStyle(x,null).getPropertyValue(styleProp);
+  return y;
+}
+function navigateToNext(){
+  let formElements = document.getElementsByClassName('page');
+  let currentElement = document.getElementById('P1');
+  let nextElement = document.getElementById('P2');
+  for (var i = 0; i<formElements.length; i++){
+      if (formElements[i].style.display === 'block'){
+          currentElement = formElements[i];
+          nextElement = formElements[i+1];
+      }
+  }
+  currentElement.style.display="none";
+  nextElement.style.display="block";
+  buttonVisibility();
+  advanceProgressBar();
+}
+function navigateToPrevious(){
+  let pages = document.getElementsByClassName('page');
+  let currentPage = document.getElementById('P2');
+  let previousPage = document.getElementById('P1');
+  for (var i = 0; i<pages.length; i++){
+      if (pages[i].style.display === 'block'){
+          currentPage = pages[i];
+          previousPage = pages[i-1];
+      }
+  }
+  currentPage.style.display="none";
+  previousPage.style.display="block";
+  buttonVisibility();
+  goBackProgressBar();
+}
+function navigateToConsent(){
+  let pages = document.getElementsByClassName('page');
+  let consentPage = document.getElementById('consent_page');
+  let welcomePage = document.getElementById('welcome_header');
+  let navToConsentButton = document.getElementById('nav_to_consent');
+  let submitButton = document.getElementById('submit_button');
+  for (var i = 0; i<pages.length; i++){
+    pages[i].style.display= "none";
+  }
+  welcomePage.style.display = "none";
+  consentPage.style.display= "block";
+  navToConsentButton.style.display = "none";
+  submitButton.style.display = "inline-block";
+  advanceProgressBar();
+
+}
+function buttonVisibility(){
+  let formElements = document.getElementsByClassName('page');
+  let previousButton = document.getElementById('previousQ');
+  let nextButton = document.getElementById('nextQ');
+  let submitButton = document.getElementById('submit_button');
+  let introElement = document.getElementById('P1');
+  let lastQ = document.getElementById('consent_page');
+  let currentElement = introElement;
+  let visiblePages = 0;
+  for(var i = 0; i<formElements.length; i++){
+      if(getStyle(formElements[i].id, 'display') === 'block'){
+          currentElement= formElements[i];
+          visiblePages += 1;
+      }
+  }
+  if (visiblePages > 1){
+      previousButton.style.display = 'none';
+      nextButton.style.display = 'none';
+      submitButton.style.display = 'none';
+  } else{
+      if(currentElement === introElement){
+          previousButton.style.backgroundColor = 'white';
+          previousButton.style.color = 'white';
+          previousButton.disabled = true;
+      } else{
+          previousButton.style.backgroundColor = 'lightgray';
+          previousButton.style.color = 'black';
+          previousButton.disabled = false;
+      }
+      if(currentElement === lastQ){
+          nextButton.style.display = 'none';
+          submitButton.style.display = 'inline-block';
+      } else{
+          nextButton.style.display = 'inline-block';
+          submitButton.style.display = 'none';
+      }
+  }
+
+}
+function checkSquarespaceCookieConsent(){
+  let squarespaceCookies = {};
+
+  if (window.getSquarespaceCookies) {
+
+    squarespaceCookies = window.getSquarespaceCookies();
+    let cookieConsent= squarespaceCookies.marketing;
+    return cookieConsent;
+  } else{
+    return 'error';
+  }
+}
+
+function handleUserInput(){
+  console.log('In handleUserInput');
+  setCookies();
+  checkRequiredFields();
+}
+function handleLoad(){
+  
+  console.log('in handleLoad');
+  let cookieConsent = checkSquarespaceCookieConsent();
+  let alreadySubmitted = document.getElementById('already-submitted');
+  let formContainer = document.getElementById('form_container');
+
+  if (cookieConsent === 'accepted'){ 
+    console.log('key cookie: ' + getCookie('00NVb000001aYpM'));
+    if(getCookie('00NVb000001aYpM') != null && getCookie('00NVb000001aYpM') != ''){//if lead key already exists
+        alreadySubmitted.style.display = 'block'; //show already submitted message
+        formContainer.style.display = 'none'; //hide form     
+    } else{
+    //only call for get cookies
+      getCookies();
+    }
+  }
+  buttonVisibility();
+  setProgressBar();
+  checkRequiredFields();
+}
+function advanceProgressBar(){
+  let progressBar = document.getElementById('mobile-progress');
+  progressBar.value += 1;
+}
+function goBackProgressBar(){
+  let progressBar = document.getElementById('mobile-progress');
+  progressBar.value -= 1;
+}
+function setProgressBar(){
+  let progressBar = document.getElementById('mobile-progress');
+  let progressTotal = document.getElementsByClassName('page').length;
+  
+  progressBar.max = progressTotal;
+  progressBar.value = 1;
+}
+
+
+//Handle submit--generate unique key and translate fields 
+document.getElementById('submit_button').addEventListener('click', handleSubmit);
+
+
+//get cookies
+window.addEventListener('load', handleLoad);
+
+//Next button
+document.getElementById('nextQ').addEventListener('click', navigateToNext);
+
+//Previous button
+document.getElementById('previousQ').addEventListener('click', navigateToPrevious);
+
+//Navigate to consent button
+document.getElementById('nav_to_consent').addEventListener('click', navigateToConsent);
+
+//handle individual question input
+document.getElementById('patient_demographics_form').addEventListener('input', handleUserInput);
+
+//check cookie consent
+window.onCookieBannerInteraction = () => {
+  console.log(checkSquarespaceCookieConsent());
+}
+
+</script>
