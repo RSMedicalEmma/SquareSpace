@@ -1,4 +1,5 @@
 const errorURL = 'https://manatee-sprout-4nzt.squarespace.com/test-register-error';
+console.log('Emma - Checking that script is running'); 
 class Visit { //tracks attempts at entering serial
   #attempts;
   constructor() {
@@ -216,3 +217,4 @@ window.onclick = function(event) {
     }
 
 };
+
