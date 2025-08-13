@@ -91,7 +91,7 @@ progress::-webkit-progress-value {
     display: none;
     color: red;
 }
-.header{
+.orderHeader{
     font-size: xx-large;
     font-weight: bold;
     text-align: center;
@@ -307,7 +307,7 @@ button:disabled {
     .side-or-bottom{
         display:block;
     }
-    .header{
+    .orderHeader{
         display:flex;
         flex:1;
         justify-content: center;
