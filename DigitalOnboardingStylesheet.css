@@ -1,5 +1,5 @@
 body{
-    font-family: 'Calibri', sans-serif;
+    font-family: 'Calibri', sans-serif !important;
 }
 .form-container {
     font-size: 16px;
@@ -323,3 +323,4 @@ button:disabled {
         width: 100%;
     }
 } 
+
