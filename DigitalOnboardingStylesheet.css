@@ -1,10 +1,6 @@
 body{
     font-family: 'Calibri', sans-serif !important;
 }
-h1, h2, h3, h4, h5, h6, p, button {
-  margin: 0 !important;
-  padding: 0 !important;
-}
 
 .form-container {
     font-size: 16px;
@@ -328,5 +324,6 @@ button:disabled {
         width: 100%;
     }
 } 
+
 
 
