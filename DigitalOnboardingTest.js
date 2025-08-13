@@ -40,6 +40,7 @@ async function postToAzure(request, azureFunction){
 }
 
 async function getFromAzure(azureFunction){
+  console.log('Is server responding?'); 
   try {
     console.log('sending');
     const response = await fetch(azureFunction,
@@ -51,7 +52,7 @@ async function getFromAzure(azureFunction){
       }
     );
     if(!response){
-      throw new Error('No response');
+      throw new Error('No response, Emma not sure whats wrong');
     }
     else if(!response.ok){
       const errorMessage = await response.json();
@@ -63,6 +64,7 @@ async function getFromAzure(azureFunction){
     }
   } catch (error) {
     console.error("Submission failed:", error);
+    console.log('Something happened here'); 
     return null;
   }
 }
@@ -77,6 +79,7 @@ function toggleSpinner(startOrStop){
     spinnerTimeout = setTimeout(() => {
       if(getStyle('spinner_overlay', 'display') === 'flex'){
         console.log('Request timed out');
+        console.log('Why is request timing out?'); 
         window.location.href = errorURL;
       }
     }, 40000);
