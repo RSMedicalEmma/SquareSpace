@@ -1,5 +1,5 @@
 const pageOrder = ['welcome', 'serial', 'patient', 'consent', 'products', 'baseline', 'book', 'activation'];
-const baseURL = 'https://www.rsmedical.com/register';
+const baseURL = 'https://manatee-sprout-4nzt.squarespace.com/register';
 const urls = {
     'serial': baseURL + '-new', 
     'patient': baseURL + '-patient-info', 
