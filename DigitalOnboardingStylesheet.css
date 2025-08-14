@@ -1,6 +1,4 @@
-body{
-    font-family: 'Calibri', sans-serif; 
-}
+
 h1, h2, h3, h4, h5, h6, p, button {
   margin: 0 !important;
   padding: 0 !important;
@@ -97,7 +95,6 @@ progress::-webkit-progress-value {
 }
 .orderHeader{
     font-size: xx-large;
-    font-weight: bold;
     text-align: center;
 }
 .subheader{
@@ -327,6 +324,7 @@ button:disabled {
         width: 100%;
     }
 } 
+
 
 
 
