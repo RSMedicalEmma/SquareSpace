@@ -195,6 +195,7 @@ progress::-webkit-progress-value {
 }
 .next-button {
     margin-top: 0.5rem;
+    margin-buttom: 1rem; 
     display: inline-block;
     padding: 8px 16px;
     font-size: 20px;
@@ -326,6 +327,7 @@ button:disabled {
         width: 100%;
     }
 } 
+
 
 
 
