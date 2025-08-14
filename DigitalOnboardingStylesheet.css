@@ -96,7 +96,6 @@ progress::-webkit-progress-value {
 .orderHeader{
     font-size: xx-large;
     text-align: center;
-    font-weight: bold; 
 }
 .subheader{
     font-size: x-large;
@@ -326,6 +325,7 @@ button:disabled {
         width: 100%;
     }
 } 
+
 
 
 
