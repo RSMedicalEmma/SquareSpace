@@ -1,4 +1,4 @@
-const errorURL = 'https://manatee-sprout-4nzt.squarespace.com/register-error';
+const errorURL = 'https://rsmedical.com/register-error';
 class Visit { //tracks attempts at entering serial
   #attempts;
   constructor() {
@@ -212,3 +212,4 @@ window.onclick = function(event) {
         closeModal();
     }
 };
+
