@@ -1,5 +1,5 @@
 const pageOrder = ['welcome', 'serial', 'patient', 'consent', 'products', 'baseline', 'book', 'activation'];
-const baseURL = 'https://manatee-sprout-4nzt.squarespace.com/register';
+const baseURL = 'https://rsmedical.com/register';
 const urls = {
     'serial': baseURL + '-new', 
     'patient': baseURL + '-patient-info', 
@@ -49,3 +49,4 @@ function getGetURL(currentPage){
 function getPostURL(currentPage){
     return postURLs[currentPage] || '';
 }
+
