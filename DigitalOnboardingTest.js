@@ -1,5 +1,4 @@
 const errorURL = 'https://rsmedical.com/test-register-error';
-console.log('Emma - Checking that script is running'); 
 class Visit { //tracks attempts at entering serial
   #attempts;
   constructor() {
@@ -14,7 +13,6 @@ class Visit { //tracks attempts at entering serial
 }
 async function postToAzure(request, azureFunction){
   try{
-    console.log('sending');
     const response = await fetch(azureFunction,{
       method: 'POST',
       headers: {
@@ -41,9 +39,7 @@ async function postToAzure(request, azureFunction){
 }
 
 async function getFromAzure(azureFunction){
-  console.log('Is server responding?'); 
   try {
-    console.log('sending');
     const response = await fetch(azureFunction,
       {
         method: "GET",
