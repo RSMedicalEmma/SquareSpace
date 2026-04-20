@@ -13,7 +13,7 @@ class Visit { //tracks attempts at entering serial
 }
 async function postToAzure(request, azureFunction){
   try{
-    console.log('sending');
+    
     const response = await fetch(azureFunction,{
       method: 'POST',
       headers: {
